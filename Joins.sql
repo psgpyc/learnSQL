@@ -41,5 +41,6 @@ ORDER BY sql_hr.offices.office_id DESC;
 SELECT sql_hr.offices.state, sql_hr.offices.city ,AVG(sql_hr.employees.salary) FROM sql_hr.offices JOIN sql_hr.employees
 ON sql_hr.offices.office_id = sql_hr.employees.office_id
 GROUP BY sql_hr.offices.state, sql_hr.offices.city
+ORDER BY AVG(sql_hr.employees.salary) ASC
 
  
