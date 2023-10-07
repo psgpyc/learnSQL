@@ -32,19 +32,20 @@ SELECT * FROM temp_employee;
  
 -- CREATE A TEMP TABLE TO STORE AVERAGE SALARY, COUNT OF OFFICE, COUNT OF JOB TITLE BY STATE
 
-DROP TABLE IF EXISTS employees_by_state;
-CREATE TEMPORARY TABLE employee_by_state (
+DROP TEMPORARY TABLE IF EXISTS employee_by_states;
+CREATE TEMPORARY TABLE employee_by_states (
 state varchar(100),
 avg_salary float,
 count_of_office int,
 count_of_job_title int
 );
 
-INSERT INTO employee_by_state
+INSERT INTO employee_by_states
 SELECT offices.state, AVG(employees.salary), COUNT(offices.office_id), COUNT(employees.job_title) FROM sql_hr.employees AS employees JOIN sql_hr.offices AS offices 
-GROUP BY offices.state;
+ON sql_hr.employees.office_id = sql_hr.offices.office_id
+GROUP BY sql_hr.offices.state;
 
-SELECT * FROM employee_by_state
+SELECT * FROM employee_by_states
 
 
 
