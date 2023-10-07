@@ -32,13 +32,29 @@ SELECT LastName, REPLACE(LastName, '- Fired', '' ) as LastNameFIxed FROM Employe
 
 -- Using Substring
 
-SELECT SUBSTRING(FirstName, 3, 3) FROM Employeeerrors; 
+SELECT SUBSTRING(first_name, 1, 3) FROM Employees; 
 
 -- Fuzzy Matching with Joins
 
 CREATE TABLE FuzzEmp(
 	FirstName VARCHAR(100),
-    LastName VARCHAR(100),
+    LastName VARCHAR(100)
 );
+
+INSERT INTO FuzzEmp Values
+("D'a", "hhaaaa"),
+("Yov", "hhaaaa"),
+("Say", "hhaaaa"),
+("Ala", "hhaaaa");
+
+
+SELECT * FROM FuzzEmp;
+
+SELECT emp.first_name, femp.FirstName FROM employees AS emp JOIN FuzzEmp as femp ON SUBSTRING(emp.first_name, 1,3) = femp.FirstName;
+
+-- UPPER and LOWER
+
+SELECT first_name, UPPER(first_name) AS upper_case, LOWER(first_name) AS lower_case FROM employees; 
+
 
 
